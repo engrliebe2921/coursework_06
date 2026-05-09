@@ -3,7 +3,7 @@ from cryptography.fernet import Fernet
 key = Fernet.generate_key()
 cipher = Fernet(key)
 
-data = b"UserPassword123"
+data = b"napier123"
 
 token = cipher.encrypt(data)
 original = cipher.decrypt(token)
