@@ -1,0 +1,27 @@
+from cryptography.fernet import Fernet
+Import time
+
+key = Fernet.generate_key()
+cipher = Fernet(key)
+
+data = b"napier123"
+
+token = cipher.encrypt(data)
+original = cipher.decrypt(token)
+
+tampered_token = token[:-1] + b'0'
+
+try:
+    cipher.decrypt(tampered_token)
+    print("Tampered token decrypted (unexpected)")
+except:
+    print("Decryption failed (expected)")
+
+start = time.time()
+
+for _ in range(1000):
+    token = cipher.encrypt(data)
+    cipher.decrypt(token)
+
+end = time.time()
+print('Time taken:', end - start)
