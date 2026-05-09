@@ -1,0 +1,12 @@
+from cryptography.fernet import Fernet
+
+key = Fernet.generate_key()
+cipher = Fernet(key)
+
+data = b"UserPassword123"
+
+token = cipher.encrypt(data)
+original = cipher.decrypt(token)
+
+print("Token:", token)
+print("Decrypted:", original)
